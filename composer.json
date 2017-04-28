@@ -1,0 +1,20 @@
+{
+    "name": "syscover/pulsar-shopping-cart",
+    "description": "Shopping Cart package",
+    "keywords": ["syscover","pulsar","laravel","shoppingcart","shopping cart","shopping", "cart"],
+    "authors": [
+        {
+            "name": "SYSCOVER SL",
+            "email": "info@syscover.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Syscover\\ShoppingCart\\": "src/Syscover/ShoppingCart"
+        }
+    },
+    "minimum-stability": "dev"
+}
