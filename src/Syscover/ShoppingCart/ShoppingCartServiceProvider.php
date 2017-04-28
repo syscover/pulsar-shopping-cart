@@ -18,7 +18,7 @@ class ShoppingCartServiceProvider extends ServiceProvider
 
         // register config files
         $this->publishes([
-            __DIR__ . '/../../config/shoppingCart.php' => config_path('shoppingCart.php')
+            __DIR__ . '/../../config/pulsar.shopping-cart.php' => config_path('pulsar.shopping-cart.php')
         ]);
 	}
 
