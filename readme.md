@@ -115,7 +115,7 @@ We have created TaxRule object to calculate tax from shopping cart, this object 
 * name:string = Name of tax
 * taxRate:float = Percentage of tax
 * priority:int [default 0] = Order to calculate tax over subtotal. If are different priorities, the highest tax is calculated on the subtotal more taxes lower priority 
-* sortOrder:int [default 0] = Order to appear tax on screen
+* order:int [default 0] = Order to appear tax on screen
 
 Cart is ready to TaxRule object, you can add tax rules to each cartItem object. You can add only one TaxRule or various with a array tax rules
 ```

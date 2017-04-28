@@ -28,7 +28,7 @@ class TaxRule
      *
      * @var string
      */
-    public $sortOrder;
+    public $sort;
 
     /**
      * Array that contain float value of tax rates to apply on price.
@@ -49,10 +49,10 @@ class TaxRule
      *
      * @param string $name
      * @param int $priority
-     * @param int $sortOrder
+     * @param int $sort
      * @param float $taxRate
      */
-    public function __construct($name, $taxRate, $priority = 0, $sortOrder = 0)
+    public function __construct($name, $taxRate, $priority = 0, $sort = 0)
     {
         if (empty($name))
             throw new \InvalidArgumentException('Please supply a valid name.');
@@ -63,13 +63,13 @@ class TaxRule
         if (strlen($priority) < 0 || ! is_numeric($priority))
             throw new \InvalidArgumentException('Please supply a valid priority.');
 
-        if (strlen($sortOrder) < 0 || ! is_numeric($sortOrder))
-            throw new \InvalidArgumentException('Please supply a valid sortOrder.');
+        if (strlen($sort) < 0 || ! is_numeric($sort))
+            throw new \InvalidArgumentException('Please supply a valid sort.');
 
         $this->id           = $this->generateId($name, $priority);
         $this->name         = $name;
         $this->priority     = (int)$priority;
-        $this->sortOrder    = (int)$sortOrder;
+        $this->sort         = (int)$sort;
         $this->taxRate      = (float)$taxRate;
     }
 
