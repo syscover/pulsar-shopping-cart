@@ -14,7 +14,10 @@
     "autoload": {
         "psr-4": {
             "Syscover\\ShoppingCart\\": "src/Syscover/ShoppingCart"
-        }
+        },
+        "classmap": [
+            "src/Syscover/ShoppingCart"
+        ]
     },
     "minimum-stability": "dev"
 }
