@@ -48,7 +48,7 @@ You have this values:
 * Value: 2 *Including tax*
 
 ```
-TAX_PRODUCT_PRICES=1
+PRODUCT_TAX_PRICES=1
 ```
 
 ### Set shipping price tax [default value 1]
@@ -67,7 +67,7 @@ You have this values:
 * Value: 2 *Including tax*
 
 ```
-TAX_PRODUCT_DISPLAY_PRICES=1
+PRODUCT_TAX_DISPLAY_PRICES=1
 ```
 
 ### Set shipping display price tax [default value 1]
