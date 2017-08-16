@@ -82,7 +82,7 @@ class Cart
     /**
      * data of invoice
      *
-     * @var array
+     * @var Collection
      */
     protected $invoice;
 
@@ -483,7 +483,7 @@ class Cart
     /**
      * Get shipping data
      *
-     * @return array
+     * @return Collection
      */
     public function getShippingData()
     {
@@ -493,7 +493,7 @@ class Cart
     /**
      * Get invoice data
      *
-     * @return array
+     * @return Collection
      */
     public function getInvoice()
     {
@@ -548,7 +548,7 @@ class Cart
      */
     public function setShippingData($shippingData)
     {
-        $this->shippingData = $shippingData;
+        $this->shippingData = collect($shippingData);
     }
 
     /**
@@ -559,7 +559,7 @@ class Cart
      */
     public function setInvoice($invoice)
     {
-        $this->invoice = $invoice;
+        $this->invoice = collect($invoice);
     }
 
 
