@@ -121,21 +121,13 @@ class Cart
      */
     public function hasShippingData()
     {
-        if(is_array($this->shippingData))
-        {
-            if(count($this->shippingData) > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
+        if( is_object($this->shippingData) &&
+            get_class($this->shippingData) === 'Illuminate\Support\Collection' &&
+            $this->shippingData->count() > 0
+        )
+            return true;
+
+        return false;
     }
 
     /**
@@ -155,10 +147,13 @@ class Cart
      */
     public function hasInvoice()
     {
-        if(is_array($this->invoice) && count($this->invoice) > 0)
+        if( is_object($this->invoice) &&
+            get_class($this->invoice) === 'Illuminate\Support\Collection' &&
+            $this->invoice->count() > 0
+        )
             return true;
-        else
-            return false;
+
+        return false;
     }
 
     /**
