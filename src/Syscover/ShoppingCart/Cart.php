@@ -2,6 +2,7 @@
 
 use Closure;
 use Syscover\ShoppingCart\Exceptions\ShoppingCartNotCombinablePriceRuleException;
+use Syscover\ShoppingCart\Traits\Giftable;
 
 /**
  * Class Cart
@@ -11,8 +12,10 @@ use Syscover\ShoppingCart\Exceptions\ShoppingCartNotCombinablePriceRuleException
  * @package Syscover\ShoppingCart
  */
 
-class Cart 
+class Cart
 {
+    use Giftable;
+
     const PRICE_WITHOUT_TAX = 1;
     const PRICE_WITH_TAX    = 2;
 
@@ -52,18 +55,11 @@ class Cart
     protected $hasItemTransportable;
 
     /**
-     * check if cart has item has shipping
-     *
-     * @var array
-     */
-    protected $hasShippingData;
-
-    /**
      * data of shipping, address, country, etc.
      *
-     * @var array
+     * @var Collection
      */
-    protected $shippingData;
+    protected $shipping;
 
     /**
      * check if cart has free shipping
@@ -85,6 +81,20 @@ class Cart
      * @var Collection
      */
     protected $invoice;
+
+    /**
+     * Comments about shopping cart
+     *
+     * @var string
+     */
+    public $comments;
+
+    /**
+     * Payment method of shopping cart
+     *
+     * @var int
+     */
+    public $paymentMethod;
 
 
 	/**
@@ -119,11 +129,11 @@ class Cart
      *
      * @return  boolean
      */
-    public function hasShippingData()
+    public function hasShipping()
     {
-        if( is_object($this->shippingData) &&
-            get_class($this->shippingData) === 'Illuminate\Support\Collection' &&
-            $this->shippingData->count() > 0
+        if( is_object($this->shipping) &&
+            get_class($this->shipping) === 'Illuminate\Support\Collection' &&
+            $this->shipping->count() > 0
         )
             return true;
 
@@ -480,9 +490,9 @@ class Cart
      *
      * @return Collection
      */
-    public function getShippingData()
+    public function getShipping()
     {
-        return $this->shippingData;
+        return $this->shipping ? $this->shipping : collect();
     }
 
     /**
@@ -492,7 +502,7 @@ class Cart
      */
     public function getInvoice()
     {
-        return $this->invoice;
+        return $this->invoice ? $this->invoice : collect();
     }
 
 
@@ -538,12 +548,12 @@ class Cart
     /**
      * Set shipping data
      *
-     * @param   array   $shippingData
+     * @param   array   $shipping
      * @return  void
      */
-    public function setShippingData($shippingData)
+    public function setShipping($shipping)
     {
-        $this->shippingData = collect($shippingData);
+        $this->shipping = collect($shipping);
     }
 
     /**

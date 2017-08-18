@@ -260,9 +260,31 @@ CartProvider::instance()->hasItemTransportable();
 ```
 
 
+To know if has shipping data
+```
+CartProvider::instance()->hasShipping();
+```
+
+
+To set shipping data, you can save tha data that you want
+```
+CartProvider::instance()->setShipping([
+    'address'   => '4st Houston',
+    'zip'       => '28844',
+    ...
+]);
+```
+
+
+To get shipping data, return a collection object
+```
+CartProvider::instance()->getShipping();
+```
+
+
 Get the number of items in the cart, total items
 ```
- CartProvider::instance()->getQuantity();
+CartProvider::instance()->getQuantity();
 ```
 
 

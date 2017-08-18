@@ -1,9 +1,12 @@
 <?php namespace Syscover\ShoppingCart;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Syscover\ShoppingCart\Traits\Giftable;
 
 class Item implements Arrayable
 {
+    use Giftable;
+
     /**
      * The rowID of the cart item
      *
