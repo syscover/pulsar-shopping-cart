@@ -19,5 +19,14 @@
             "src/Syscover/ShoppingCart"
         ]
     },
-    "minimum-stability": "dev"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Syscover\\ShoppingCart\\ShoppingCartServiceProvider"
+            ]
+        },
+        "aliases": {
+            "CartProvider": "Syscover\\ShoppingCart\\Facades\\CartProvider"
+        }
+    }
 }

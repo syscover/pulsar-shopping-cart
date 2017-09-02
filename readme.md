@@ -9,17 +9,7 @@
 composer require syscover/pulsar-shopping-cart
 ```
 
-**2 - Register service provider, on file config/app.php add to providers array**
-```
-Syscover\ShoppingCart\ShoppingCartServiceProvider::class,
-```
-
-And register alias, on file config/app.php add to aliases array
-```
-'CartProvider' => Syscover\ShoppingCart\Facades\CartProvider::class,
-```
-
-**3 - Execute publish command**
+**2 - Execute publish command**
 ```
 php artisan vendor:publish
 ```
