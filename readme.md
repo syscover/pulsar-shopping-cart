@@ -38,7 +38,7 @@ You have this values:
 * Value: 2 *Including tax*
 
 ```
-PRODUCT_TAX_PRICES=1
+SHOPPING_CART_PRODUCT_TAX_PRICES=1
 ```
 
 ### Set shipping price tax [default value 1]
@@ -47,7 +47,7 @@ Defines the types of prices that are introduced in shipping prices, this option 
 * Value: 2 *Including tax*
 
 ```
-TAX_SHIPPING_PRICES=1
+SHOPPING_CART_TAX_SHIPPING_PRICES=1
 ```
 
 ### Set product display price tax [default value 1]
@@ -57,7 +57,7 @@ You have this values:
 * Value: 2 *Including tax*
 
 ```
-PRODUCT_TAX_DISPLAY_PRICES=1
+SHOPPING_CART_PRODUCT_TAX_DISPLAY_PRICES=1
 ```
 
 ### Set shipping display price tax [default value 1]
@@ -66,7 +66,7 @@ Defines how you want display shipping prices
 * Value: 2 *Including tax*
 
 ```
-TAX_SHIPPING_DISPLAY_PRICES=1
+SHOPPING_CART_TAX_SHIPPING_DISPLAY_PRICES=1
 ```
 
 
