@@ -23,10 +23,10 @@
         "laravel": {
             "providers": [
                 "Syscover\\ShoppingCart\\ShoppingCartServiceProvider"
-            ]
-        },
-        "aliases": {
-            "CartProvider": "Syscover\\ShoppingCart\\Facades\\CartProvider"
+            ],
+            "aliases": {
+                "CartProvider": "Syscover\\ShoppingCart\\Facades\\CartProvider"
+            }
         }
     }
 }
