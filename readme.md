@@ -11,18 +11,10 @@ composer require syscover/pulsar-shopping-cart
 
 **2 - Execute publish command**
 ```
-php artisan vendor:publish
-```
-
-
-##To run laravel testing
-
-publish testing files
-```
 php artisan vendor:publish --provider="Syscover\ShoppingCart\ShoppingCartServiceProvider"
 ```
 
-and run the test using the following command:
+##To run laravel testing
 ```
 phpunit tests/ShoppingCartProviderTest
 ```
