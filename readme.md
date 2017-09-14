@@ -19,7 +19,6 @@ php artisan vendor:publish --provider="Syscover\ShoppingCart\ShoppingCartService
 phpunit tests/ShoppingCartProviderTest
 ```
 
-
 ## General configuration environment values
 We indicate configuration variables available, to change them what you should do from the file environment variables .env
 
