@@ -259,11 +259,11 @@ class Item implements Arrayable
         // get price for item, can to be with or without tax depend of configuration
         if($attribute === 'price')
         {
-            if(config('pulsar.shopping-cart.productTaxDisplayPrices') == Cart::PRICE_WITHOUT_TAX)
+            if(config('pulsar-shopping_cart.productTaxDisplayPrices') == Cart::PRICE_WITHOUT_TAX)
             {
                 return $this->unitPrice;
             }
-            elseif(config('pulsar.shopping-cart.productTaxDisplayPrices') == Cart::PRICE_WITH_TAX)
+            elseif(config('pulsar-shopping_cart.productTaxDisplayPrices') == Cart::PRICE_WITH_TAX)
             {
                 return $this->calculateUnitPriceWithTax($this->unitPrice);
             }
@@ -590,7 +590,7 @@ class Item implements Arrayable
         // PRICE WITHOUT TAX
         if(
             ($mode == Cart::PRICE_WITHOUT_TAX) ||
-            ($mode == null && config('pulsar.shopping-cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX || $this->taxRules === null || $this->taxRules->count() == 0)
+            ($mode == null && config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX || $this->taxRules === null || $this->taxRules->count() == 0)
         )
         {
             if(! isset($this->unitPrice))
@@ -625,7 +625,7 @@ class Item implements Arrayable
         // PRICE WITH TAX
         elseif(
             ($mode == Cart::PRICE_WITH_TAX) ||
-            ($mode == null && config('pulsar.shopping-cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+            ($mode == null && config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
         )
         {
             // total calculate
