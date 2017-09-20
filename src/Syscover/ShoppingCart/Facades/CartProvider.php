@@ -9,6 +9,6 @@ class CartProvider extends Facade {
 	 *
 	 * @return string
 	 */
-	protected static function getFacadeAccessor() { return 'cartProvider'; }
+	protected static function getFacadeAccessor() { return 'cart-provider'; }
 
 }

@@ -29,6 +29,6 @@ class ShoppingCartServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app->bind('cartProvider', CartProvider::class);
+		$this->app->bind('cart-provider', CartProvider::class);
 	}
 }
