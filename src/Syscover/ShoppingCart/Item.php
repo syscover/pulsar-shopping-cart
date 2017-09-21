@@ -242,6 +242,11 @@ class Item implements Arrayable
             return $this->discountsTotalFixed->sum('amount');
         }
 
+        if($attribute === 'totalWeight')
+        {
+            return $this->quantity * $this->weight;
+        }
+
         if($attribute === 'discountAmount')
         {
             return
