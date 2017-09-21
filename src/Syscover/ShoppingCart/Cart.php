@@ -436,6 +436,18 @@ class Cart
     }
 
     /**
+     * Get total weight of cart
+     *
+     * @return float
+     */
+    public function getWeight()
+    {
+        return $this->cartItems->reduce(function($weight, $item){
+            return $weight += $item->totalWeight;
+        }, 0);
+    }
+
+    /**
      * Get Collection with tax rules objects
      *
      * @return \Syscover\ShoppingCart\CartItemTaxRules
