@@ -293,7 +293,7 @@ class Cart
         {
             $cartItems = $this->cartItems;
             return $cartItems->reduce(function ($weight, Item $item) {
-                return $weight + ($item->weight * $item->quantity);
+                return $weight + $item->totalWeight;
             }, 0);
         }
 
@@ -302,7 +302,7 @@ class Cart
             $cartItems = $this->cartItems;
             return $cartItems->reduce(function ($weight, Item $item) {
                 if($item->transportable === true)
-                    return $weight + ($item->weight * $item->quantity);
+                    return $weight + $item->totalWeight;
             }, 0);
         }
 
@@ -432,18 +432,6 @@ class Cart
     {
         return $this->cartItems->reduce(function($quantity, $item){
             return $quantity += $item->quantity;
-        }, 0);
-    }
-
-    /**
-     * Get total weight of cart
-     *
-     * @return float
-     */
-    public function getWeight()
-    {
-        return $this->cartItems->reduce(function($weight, $item){
-            return $weight += $item->totalWeight;
         }, 0);
     }
 
