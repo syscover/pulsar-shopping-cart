@@ -30,7 +30,7 @@ class CartItems extends Collection
             $dataAux['price']                                   = $item->price;
             $dataAux['quantity']                                = $item->quantity;
             $dataAux['subtotal']                                = $item->subtotal;
-            $dataAux['total_without_discounts']                 = $item->total_without_discounts;
+            $dataAux['total_without_discounts']                 = $item->totalWithoutDiscounts;
 
             // discounts
             $dataAux['discount_subtotal_percentage']            = $item->discountSubtotalPercentage;
