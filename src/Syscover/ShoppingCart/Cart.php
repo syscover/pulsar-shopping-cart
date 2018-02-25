@@ -505,6 +505,11 @@ class Cart
         return $this->invoice ? $this->invoice : collect();
     }
 
+    /**
+     * Create array object with values to create a order
+     *
+     * @return array
+     */
     public function getDataOrder()
     {
         $data                                           = [];
