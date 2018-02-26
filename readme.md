@@ -16,7 +16,7 @@ php artisan vendor:publish --provider="Syscover\ShoppingCart\ShoppingCartService
 
 ##To run laravel testing
 ```
-phpunit tests/ShoppingCartProviderTest
+./vendor/bin/phpunit
 ```
 
 ## General configuration environment values

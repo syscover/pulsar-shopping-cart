@@ -1,13 +1,11 @@
-<?php
+<?php namespace Tests\Feature;
+
+use Tests\TestCase;
 use Syscover\ShoppingCart\Facades\CartProvider;
 use Syscover\ShoppingCart\Cart;
 use Syscover\ShoppingCart\Item;
 use Syscover\ShoppingCart\TaxRule;
 use Syscover\ShoppingCart\PriceRule;
-
-require_once __DIR__ . '/shopping_cart_tests_helpers/SessionMock.php';
-require_once __DIR__ . '/shopping_cart_tests_helpers/ProductModelStub.php';
-require_once __DIR__ . '/shopping_cart_tests_helpers/NamespacedProductModelStub.php';
 
 class ShoppingCartProviderTest extends TestCase
 {
@@ -172,6 +170,8 @@ class ShoppingCartProviderTest extends TestCase
 
         CartProvider::instance()->addCartPriceRule(
             new PriceRule(
+                1,
+                'Syscover\\Madrket\\Models\\CartPriceRule',
                 'My first price rule',
                 'For being a good customer',
                 PriceRule::DISCOUNT_SUBTOTAL_PERCENTAGE,
@@ -254,6 +254,8 @@ class ShoppingCartProviderTest extends TestCase
             // apply 10% percentage discount over total
             CartProvider::instance()->addCartPriceRule(
                 new PriceRule(
+                    1,
+                    'Syscover\\Madrket\\Models\\CartPriceRule',
                     'discount 10% percentage',
                     'For being a good customer',
                     PriceRule::DISCOUNT_TOTAL_PERCENTAGE,
@@ -337,6 +339,16 @@ class ShoppingCartProviderTest extends TestCase
 
         CartProvider::instance()->add(new Item(12345, 'Product', 2, 9.99, 1.000, true));
     }
+
+
+
+
+
+
+
+
+
+
 
     //
 //    public function testCartCanAddMultipleOptions()

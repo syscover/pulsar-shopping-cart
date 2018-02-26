@@ -9,6 +9,20 @@ class PriceRule
     const DISCOUNT_TOTAL_FIXED_AMOUNT       = 5;
 
     /**
+     * class name to generate id
+     *
+     * @var string
+     */
+    public $className;
+
+    /**
+     * ix from price rule to generate id
+     *
+     * @var string
+     */
+    public $ix;
+
+    /**
      * id price rule
      *
      * @var string
@@ -39,16 +53,9 @@ class PriceRule
     /**
      * Discount object with values of discount
      *
-     * @var int
+     * @var \Syscover\ShoppingCart\Discount
      */
     public $discount;
-
-    /**
-     * Amount generate by discount from this price rule
-     *
-     * @var int
-     */
-    public $discountAmount;
 
     /**
      * Check if this price rule is combinable with other price rules
@@ -74,6 +81,8 @@ class PriceRule
 
     /**
      * PriceRule constructor.
+     * @param int       $ix                                     numeric data to generate unique ID
+     * @param string    $className                              string data, class name if is possible, to generate unique ID
      * @param string    $name
      * @param string    $description
      * @param int       $discountType
@@ -85,8 +94,23 @@ class PriceRule
      * @param bool      $freeShipping
      * @param array     $options
      */
-    public function __construct($name, $description, $discountType, $freeShipping = false, $discountFixed = null, $discountPercentage = null, $maximumPercentageDiscountAmount = null, $applyShippingAmount = false, $combinable = true, array $options = [])
+    public function __construct(
+        $ix,
+        $className,
+        $name,
+        $description,
+        $discountType,
+        $freeShipping = false,
+        $discountFixed = null,
+        $discountPercentage = null,
+        $maximumPercentageDiscountAmount = null,
+        $applyShippingAmount = false,
+        $combinable = true,
+        array $options = []
+    )
     {
+        $this->ix                       = $ix;
+        $this->className                = $className;
         $this->name                     = $name;
         $this->description              = $description;
         $this->discountType             = $discountType;
@@ -96,7 +120,6 @@ class PriceRule
         $this->id                       = $this->generateId();
 
         $this->discount = new Discount($this->id, $discountFixed, $discountPercentage, $maximumPercentageDiscountAmount, $applyShippingAmount);
-
     }
 
     /**
@@ -106,7 +129,7 @@ class PriceRule
      */
     protected function generateId()
     {
-        return md5($this->name . $this->description . $this->discountType . $this->combinable);
+        return md5($this->ix . $this->className .  $this->discountType . $this->combinable);
     }
 
     /**
@@ -147,18 +170,5 @@ class PriceRule
     public function getDiscountFixed($decimals = 0, $decimalPoint = ',', $thousandSeparator = '.')
     {
         return number_format($this->discount->fixed, $decimals, $decimalPoint, $thousandSeparator);
-    }
-
-    /**
-     * Returns the formatted discount amount.
-     *
-     * @param int       $decimals
-     * @param string    $decimalPoint
-     * @param string    $thousandSeparator
-     * @return string
-     */
-    public function getDiscountAmount($decimals = 2, $decimalPoint = ',', $thousandSeparator = '.')
-    {
-        return number_format($this->discountAmount, $decimals, $decimalPoint, $thousandSeparator);
     }
 }

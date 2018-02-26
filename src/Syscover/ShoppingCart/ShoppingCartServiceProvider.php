@@ -13,7 +13,7 @@ class ShoppingCartServiceProvider extends ServiceProvider
 	{
 		// register tests
 		$this->publishes([
-			__DIR__ . '/../../tests/' => base_path('/tests')
+			__DIR__ . '/../../tests/Feature' => base_path('/tests/Feature')
 		], 'tests');
 
         // register config files
