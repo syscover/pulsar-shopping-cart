@@ -48,6 +48,18 @@ class ShoppingCartProviderTest extends TestCase
         $this->assertEquals(1, CartProvider::instance()->getCartItems()->first()->taxRules->count());
         $this->assertEquals(21, CartProvider::instance()->getCartItems()->first()->taxRules->first()->taxRate);
         $this->assertEquals(['21'], CartProvider::instance()->getCartItems()->first()->getTaxRates());
+
+        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        {
+
+        }
+        elseif(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        {
+            foreach(CartProvider::instance()->getCartItems() as $item)
+            {
+                $this->assertEquals(1.7338016528925621617673868968267925083637237548828125, $item->taxAmount);
+            }
+        }
     }
 
     public function testCartCanAddVariousWithTaxRules()
