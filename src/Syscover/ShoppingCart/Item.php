@@ -595,7 +595,7 @@ class Item implements Arrayable
         // PRICE WITHOUT TAX
         if(
             ($mode == Cart::PRICE_WITHOUT_TAX) ||
-            ($mode == null && config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX || $this->taxRules === null || $this->taxRules->count() == 0)
+            ($mode == null && config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX || $this->taxRules === null || $this->taxRules->count() == 0)
         )
         {
             if(! isset($this->unitPrice))
@@ -630,7 +630,7 @@ class Item implements Arrayable
         // PRICE WITH TAX
         elseif(
             ($mode == Cart::PRICE_WITH_TAX) ||
-            ($mode == null && config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+            ($mode == null && config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         )
         {
             // total calculate

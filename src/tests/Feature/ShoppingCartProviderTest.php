@@ -49,11 +49,11 @@ class ShoppingCartProviderTest extends TestCase
         $this->assertEquals(21, CartProvider::instance()->getCartItems()->first()->taxRules->first()->taxRate);
         $this->assertEquals(['21'], CartProvider::instance()->getCartItems()->first()->getTaxRates());
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX)
         {
 
         }
-        elseif(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        elseif(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         {
             foreach(CartProvider::instance()->getCartItems() as $item)
             {
@@ -73,11 +73,11 @@ class ShoppingCartProviderTest extends TestCase
 
         $this->assertEquals(2, CartProvider::instance()->getCartItems()->first()->taxRules->count());
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX)
         {
 
         }
-        elseif(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        elseif(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         {
             $this->assertEquals('150,26', CartProvider::instance()->getCartItems()->first()->getSubtotal());
             $this->assertEquals(150.262960180315559455266338773071765899658203125, CartProvider::instance()->getCartItems()->first()->subtotal);
@@ -106,7 +106,7 @@ class ShoppingCartProviderTest extends TestCase
 
         $this->assertEquals(2, CartProvider::instance()->getCartItems()->first()->taxRules->count());
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX)
         {
             $this->assertEquals('100,00', CartProvider::instance()->getCartItems()->first()->getSubtotal());
             $this->assertEquals(100.00, CartProvider::instance()->getCartItems()->first()->subtotal);
@@ -122,7 +122,7 @@ class ShoppingCartProviderTest extends TestCase
             $this->assertEquals('10', CartProvider::instance()->getTaxRules()->get(md5('OTHER IVA' . '1'))->getTaxRate());
             $this->assertEquals('OTHER IVA', CartProvider::instance()->getTaxRules()->get(md5('OTHER IVA' . '1'))->name);
         }
-        elseif(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        elseif(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         {
             $this->assertEquals('75,13', CartProvider::instance()->getCartItems()->first()->getSubtotal());
             $this->assertEquals(75.1314800901577797276331693865358829498291015625, CartProvider::instance()->getCartItems()->first()->subtotal);
@@ -153,7 +153,7 @@ class ShoppingCartProviderTest extends TestCase
         $this->assertEquals(31, CartProvider::instance()->getCartItems()->first()->taxRules->first()->taxRate);
         $this->assertEquals(['31'], CartProvider::instance()->getCartItems()->first()->getTaxRates());
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX)
         {
             $this->assertEquals('110,99', CartProvider::instance()->getCartItems()->first()->getSubtotal());
             $this->assertEquals(110.99, CartProvider::instance()->getCartItems()->first()->subtotal);
@@ -161,7 +161,7 @@ class ShoppingCartProviderTest extends TestCase
             $this->assertEquals('145,40', CartProvider::instance()->getCartItems()->first()->getTotal());
             $this->assertEquals(145.396899999999988040144671685993671417236328125, CartProvider::instance()->getCartItems()->first()->total);
         }
-        elseif(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        elseif(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         {
             $this->assertEquals('84,73', CartProvider::instance()->getCartItems()->first()->getSubtotal());
             $this->assertEquals(84.7251908396946618040601606480777263641357421875, CartProvider::instance()->getCartItems()->first()->subtotal);
@@ -195,7 +195,7 @@ class ShoppingCartProviderTest extends TestCase
 
         $this->assertEquals(2, CartProvider::instance()->getCartItems()->first()->taxRules->count());
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX)
         {
             $this->assertEquals('100,00', CartProvider::instance()->getCartItems()->first()->getSubtotal());
             $this->assertEquals(100.00, CartProvider::instance()->getCartItems()->first()->subtotal);
@@ -213,7 +213,7 @@ class ShoppingCartProviderTest extends TestCase
             $this->assertEquals('OTHER IVA', CartProvider::instance()->getTaxRules()->get(md5('OTHER IVA' . '1'))->name);
         }
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         {
             $this->assertEquals('75,13', CartProvider::instance()->getCartItems()->first()->getSubtotal());
             $this->assertEquals(75.1314800901577797276331693865358829498291015625, CartProvider::instance()->getCartItems()->first()->subtotal);
@@ -251,12 +251,12 @@ class ShoppingCartProviderTest extends TestCase
 
         $this->assertEquals(2, CartProvider::instance()->getCartItems()->count());
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX)
         {
 
         }
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         {
             $this->assertEquals('171,64', CartProvider::instance()->getSubtotal());
             $this->assertEquals('36,05', CartProvider::instance()->getTaxAmount());
@@ -300,11 +300,11 @@ class ShoppingCartProviderTest extends TestCase
 
         $this->assertEquals(2, CartProvider::instance()->getCartItems()->count());
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX)
         {
 
         }
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         {
             $this->assertEquals('171,64', CartProvider::instance()->getSubtotal());
             $this->assertEquals('36,05', CartProvider::instance()->getTaxAmount());
@@ -321,11 +321,11 @@ class ShoppingCartProviderTest extends TestCase
             new TaxRule('IVA', 21.00, 0, 0)
         ]));
 
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITHOUT_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX)
         {
 
         }
-        if(config('pulsar-shopping_cart.productTaxPrices') == Cart::PRICE_WITH_TAX)
+        if(config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         {
             $this->assertEquals('343,29', CartProvider::instance()->getSubtotal());
             $this->assertEquals('72,09', CartProvider::instance()->getTaxAmount());
