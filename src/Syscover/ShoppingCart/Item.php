@@ -264,11 +264,11 @@ class Item implements Arrayable
         // get price for item, can to be with or without tax depend of configuration
         if($attribute === 'price')
         {
-            if(config('pulsar-shopping_cart.productTaxDisplayPrices') == Cart::PRICE_WITHOUT_TAX)
+            if(config('pulsar-shopping_cart.product_tax_display_prices') == Cart::PRICE_WITHOUT_TAX)
             {
                 return $this->unitPrice;
             }
-            elseif(config('pulsar-shopping_cart.productTaxDisplayPrices') == Cart::PRICE_WITH_TAX)
+            elseif(config('pulsar-shopping_cart.product_tax_display_prices') == Cart::PRICE_WITH_TAX)
             {
                 return $this->calculateUnitPriceWithTax($this->unitPrice);
             }
