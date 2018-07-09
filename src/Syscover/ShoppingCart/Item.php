@@ -144,10 +144,10 @@ class Item implements Arrayable
      * @param float                                 $inputPrice
      * @param boolean                               $transportable
      * @param float|null                            $weight
-     * @param array|\Syscover\ShoppingCart\TaxRule  $taxRule
      * @param array                                 $options
+     * @param array|\Syscover\ShoppingCart\TaxRule  $taxRule
      */
-    public function __construct($id, $name, $quantity, $inputPrice, $weight = 1.000, $transportable = true, $taxRule = [], array $options = [])
+    public function __construct($id, $name, $quantity, $inputPrice, $weight = 1.000, $transportable = true, array $options = [],  array $taxRule = [])
     {
         if(empty($id))
             throw new \InvalidArgumentException('Please supply a valid identifier.');
