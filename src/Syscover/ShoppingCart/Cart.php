@@ -505,25 +505,6 @@ class Cart
         return $this->invoice ? $this->invoice : collect();
     }
 
-    /**
-     * Create array object with values to create a order
-     *
-     * @return array
-     */
-    public function getDataOrder()
-    {
-        $data                                           = [];
-        $data['discount_amount']                        = $this->discountAmount;                                    // total amount to discount, fixed plus percentage discounts
-        $data['subtotal_with_discounts']                = $this->subtotalWithDiscounts;                             // subtotal with discounts applied
-        $data['tax_amount']                             = $this->taxAmount;                                         // total tax amount
-        $data['cart_items_total_without_discounts']     = $this->cartItemsTotalWithoutDiscounts;                    // total of cart items. Amount with tax, without discount and without shipping
-        $data['subtotal']                               = $this->subtotal;                                          // amount without tax and without shipping
-        $data['shipping_amount']                        = $this->hasFreeShipping() ? 0 : $this->shippingAmount;     // shipping amount
-        $data['total']                                  = $this->total;                                             // shipping amount
-
-        return $data;
-    }
-
     //*****************
     // Setters
     //*****************
