@@ -58,6 +58,13 @@ class PriceRule
     public $discount;
 
     /**
+     * Discount amount, this value is set in shopping cart in applyCartPriceRuleToCartItems method
+     *
+     * @var float
+     */
+    public  $discountAmount;
+
+    /**
      * Check if this price rule is combinable with other price rules
      *
      * @var boolean
