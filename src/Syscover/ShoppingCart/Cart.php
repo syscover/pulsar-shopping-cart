@@ -534,7 +534,7 @@ class Cart
     {
         $this->cartItems->get($rowId)->setQuantity($quantity);
 
-        // if quantity is less than zere, remove item
+        // if quantity is less than zero, remove item
         if ($this->cartItems->get($rowId)->quantity <= 0)
         {
             $this->remove($rowId);

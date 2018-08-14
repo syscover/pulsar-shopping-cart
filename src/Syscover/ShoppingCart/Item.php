@@ -147,7 +147,16 @@ class Item implements Arrayable
      * @param array                                 $options
      * @param array|\Syscover\ShoppingCart\TaxRule  $taxRule
      */
-    public function __construct($id, $name, $quantity, $inputPrice, $weight = 1.000, $transportable = true, array $options = [],  array $taxRule = [])
+    public function __construct(
+        $id,
+        $name,
+        $quantity,
+        $inputPrice,
+        $weight = 1.000,
+        $transportable = true,
+        $taxRule = [],
+        array $options = []
+    )
     {
         if(empty($id))
             throw new \InvalidArgumentException('Please supply a valid identifier.');
@@ -591,40 +600,19 @@ class Item implements Arrayable
      */
     public function calculateAmounts($mode = null)
     {
-        // subtotal calculate
         // PRICE WITHOUT TAX
         if(
             ($mode == Cart::PRICE_WITHOUT_TAX) ||
             ($mode == null && config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITHOUT_TAX || $this->taxRules === null || $this->taxRules->count() == 0)
         )
         {
+            // if a new product will not have unitPrice, price per item without tax
             if(! isset($this->unitPrice))
+            {
                 $this->unitPrice = $this->inputPrice;
-
-            // calculate subtotal
-            $this->subtotal                 = $this->quantity * $this->unitPrice;
-            $this->subtotalWithDiscounts    = $this->subtotal;
-
-            if($this->discountsSubtotalFixed->sum('fixed') > 0)
-            {
-                // calculate subtotal including with discount fixed amount
-                $this->subtotalWithDiscounts = $this->subtotal - $this->discountSubtotalFixedAmount;
             }
 
-            // calculate all amounts for price without tax
-            $this->total = $this->calculateTotalAndTaxOverSubtotal($this->subtotalWithDiscounts);
-
-            // calculate discount total fixed amount
-            if($this->discountsTotalFixed->sum('fixed') > 0)
-            {
-                // calculate total less discount fixed amount
-                $this->total -= $this->discountTotalFixedAmount;
-
-                $this->subtotalWithDiscounts = $this->calculateSubtotalAndTaxOverTotal($this->total);
-            }
-
-            // when we have subtotal, subtotalWithDiscounts and total amount, calculate percentage discounts
-            $this->applyDiscountsPercentage();
+            $this->calculate();
         }
 
         // PRICE WITH TAX
@@ -633,52 +621,48 @@ class Item implements Arrayable
             ($mode == null && config('pulsar-shopping_cart.product_tax_prices') == Cart::PRICE_WITH_TAX)
         )
         {
-            // total calculate
-            $this->total = $this->quantity * $this->inputPrice;
-
-            // check  that taxes have been calculated
-            $isCalculateTax = false;
-
+            // if a new product will not have unitPrice, price per item without tax
             if(! isset($this->unitPrice))
             {
                 // calculate unit price without tax
-                $this->unitPrice    = $this->calculateUnitPriceOverPriceWithTax($this->inputPrice);
+                $this->unitPrice = $this->calculateUnitPriceOverPriceWithTax($this->inputPrice);
             }
 
-            // subtotal is the amount without any discount
-            $this->subtotal                 = $this->quantity * $this->unitPrice;
-            $this->subtotalWithDiscounts    = $this->subtotal;
-
-            if($this->discountsTotalFixed->sum('fixed') > 0)
-            {
-                // calculate total including possible discount fixed amount
-                $this->total = $this->total - $this->discountTotalFixedAmount;
-
-                // calculate subtotal with total discounts
-                $this->subtotalWithDiscounts    = $this->calculateSubtotalAndTaxOverTotal($this->total);
-                $isCalculateTax                 = true;
-            }
-
-
-            // calculate discount subtotal fixed amount
-            if($this->discountsSubtotalFixed->sum('fixed') > 0)
-            {
-                // calculate subtotal less discount fixed amount
-                $this->subtotalWithDiscounts -= $this->discountSubtotalFixedAmount;
-
-                $this->total    = $this->calculateTotalAndTaxOverSubtotal($this->subtotalWithDiscounts);
-                $isCalculateTax = true;
-            }
-
-            //  if tax haven't been calculated before, calculate it now
-            if(! $isCalculateTax)
-            {
-                $this->calculateTaxAmountOverSubtotal($this->subtotalWithDiscounts);
-            }
-
-            // when we have subtotal, subtotalWithDiscounts and total amount, calculate percentage discounts
-            $this->applyDiscountsPercentage();
+            $this->calculate();
         }
+    }
+
+    /**
+     * Function called only from calculateAmounts
+     *
+     * @return void
+     */
+    private function calculate()
+    {
+        // subtotal is the amount without any discount
+        $this->subtotal                 = $this->quantity * $this->unitPrice;
+        $this->subtotalWithDiscounts    = $this->subtotal;
+
+        if($this->discountsSubtotalFixed->sum('fixed') > 0)
+        {
+            // calculate subtotal including with discount fixed amount
+            $this->subtotalWithDiscounts = $this->subtotal - $this->discountSubtotalFixedAmount;
+        }
+
+        // calculate all amounts for price without tax
+        $this->total = $this->calculateTotalAndTaxOverSubtotal($this->subtotalWithDiscounts);
+
+        // calculate discount total fixed amount
+        if($this->discountsTotalFixed->sum('fixed') > 0)
+        {
+            // calculate total less discount fixed amount
+            $this->total -= $this->discountTotalFixedAmount;
+
+            $this->subtotalWithDiscounts = $this->calculateSubtotalAndTaxOverTotal($this->total);
+        }
+
+        // when we have subtotal, subtotalWithDiscounts and total amount, calculate percentage discounts
+        $this->applyDiscountsPercentage();
     }
 
     /**
