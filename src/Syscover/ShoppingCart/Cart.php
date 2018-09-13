@@ -1,5 +1,6 @@
 <?php namespace Syscover\ShoppingCart;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Closure;
 use Syscover\ShoppingCart\Exceptions\ShoppingCartNotCombinablePriceRuleException;
 use Syscover\ShoppingCart\Traits\Giftable;
@@ -12,7 +13,7 @@ use Syscover\ShoppingCart\Traits\Giftable;
  * @package Syscover\ShoppingCart
  */
 
-class Cart
+class Cart implements Arrayable
 {
     use Giftable;
 
@@ -480,7 +481,7 @@ class Cart
      *
      * @return \Syscover\ShoppingCart\CartPriceRules
      */
-    public function getCartPriceRuleNotCombinable()
+    public function getCartPriceRulesNotCombinable()
     {
         return $this->cartPriceRules->where('combinable', false);
     }
@@ -965,5 +966,45 @@ class Cart
             }
         }
         $this->hasItemTransportable = false;
+    }
+
+    /**
+     * Get the instance as an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'cartItemsTotal'                    => $this->cartItemsTotal,
+            'cartItemsTotalWithoutDiscounts'    => $this->cartItemsTotalWithoutDiscounts,
+            'comments'                          => $this->comments,
+            'discountAmount'                    => $this->discountAmount,
+            'discountSubtotalAmount'            => $this->discountSubtotalAmount,
+            'discountSubtotalPercentageAmount'  => $this->discountSubtotalPercentageAmount,
+            'discountTotalAmount'               => $this->discountTotalAmount,
+            'discountTotalPercentageAmount'     => $this->discountTotalPercentageAmount,
+            'hasCartPriceRuleNotCombinable'     => $this->hasCartPriceRuleNotCombinable,
+            'hasFreeShipping'                   => $this->hasFreeShipping,
+            'hasInvoice'                        => $this->hasInvoice(),
+            'hasItemTransportable'              => $this->hasItemTransportable,
+            'hasShipping'                       => $this->hasShipping(),
+            'instance'                          => $this->instance,
+            'invoice'                           => $this->invoice,
+            'items'                             => $this->cartItems,
+            'paymentMethod'                     => $this->paymentMethod,
+            'priceRules'                        => $this->cartPriceRules,
+            'quantity'                          => $this->getQuantity(),
+            'shipping'                          => $this->shipping,
+            'shippingAmount'                    => $this->shippingAmount,
+            'subtotal'                          => $this->subtotal,
+            'subtotalWithDiscounts'             => $this->subtotalWithDiscounts,
+            'taxAmount'                         => $this->taxAmount,
+            'taxRules'                          => $this->getTaxRules(),
+            'total'                             => $this->total,
+            'transportableWeight'               => $this->transportableWeight,
+            'weight'                            => $this->weight,
+            'cartPriceRulesNotCombinable'       => $this->getCartPriceRulesNotCombinable()
+        ];
     }
 }

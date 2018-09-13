@@ -890,14 +890,15 @@ class Item implements Arrayable
     public function toArray()
     {
         return [
-            'rowId'         => $this->rowId,
-            'id'            => $this->id,
-            'name'          => $this->name,
-            'quantity'      => $this->quantity,
-            'initPrice'     => $this->initPrice,
-            'transportable' => $this->transportable,
-            'weight'        => $this->weight,
-            'options'       => $this->options,
+            'rowId'                     => $this->rowId,
+            'id'                        => $this->id,
+            'name'                      => $this->name,
+            'quantity'                  => $this->quantity,
+            'initPrice'                 => $this->initPrice,
+            'transportable'             => $this->transportable,
+            'weight'                    => $this->weight,
+            'options'                   => $this->options,
+            'totalWithoutDiscounts'     => $this->totalWithoutDiscounts
         ];
     }
 }
