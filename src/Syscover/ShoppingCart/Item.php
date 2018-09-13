@@ -890,15 +890,33 @@ class Item implements Arrayable
     public function toArray()
     {
         return [
-            'rowId'                     => $this->rowId,
-            'id'                        => $this->id,
-            'name'                      => $this->name,
-            'quantity'                  => $this->quantity,
-            'initPrice'                 => $this->initPrice,
-            'transportable'             => $this->transportable,
-            'weight'                    => $this->weight,
-            'options'                   => $this->options,
-            'totalWithoutDiscounts'     => $this->totalWithoutDiscounts
+            'discountAmount'                    => $this->discountAmount,
+            'discountsSubtotalFixed'            => $this->discountsSubtotalFixed,
+            'discountsTotalFixed'               => $this->discountsTotalFixed,
+            'discountsTotalPercentage'          => $this->discountsTotalPercentage,
+            'discountsSubtotalPercentage'       => $this->discountsSubtotalPercentage,
+            'discountSubtotalFixedAmount'       => $this->discountSubtotalFixedAmount,
+            'discountSubtotalPercentage'        => $this->discountSubtotalPercentage,
+            'discountSubtotalPercentageAmount'  => $this->discountSubtotalPercentageAmount,
+            'discountTotalFixedAmount'          => $this->discountTotalFixedAmount,
+            'discountTotalPercentage'           => $this->discountTotalPercentage,
+            'discountTotalPercentageAmount'     => $this->discountTotalPercentageAmount,
+            'discountType'                      => $this->discountType,
+            'id'                                => $this->id,
+            'name'                              => $this->name,
+            'options'                           => $this->options,
+            'price'                             => $this->price,
+            'quantity'                          => $this->quantity,
+            'rowId'                             => $this->rowId,
+            'subtotal'                          => $this->subtotal,
+            'taxAmount'                         => $this->taxAmount,
+            'taxRules'                          => $this->taxRules,
+            'total'                             => $this->total,
+            'totalWeight'                       => $this->totalWeight,
+            'totalWithoutDiscounts'             => $this->totalWithoutDiscounts,
+            'transportable'                     => $this->transportable,
+            'unitPrice'                         => $this->unitPrice,
+            'weight'                            => $this->weight
         ];
     }
 }
