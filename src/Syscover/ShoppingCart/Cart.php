@@ -1,7 +1,8 @@
 <?php namespace Syscover\ShoppingCart;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Closure;
+use JsonSerializable;
+use Illuminate\Contracts\Support\Arrayable;
 use Syscover\ShoppingCart\Exceptions\ShoppingCartNotCombinablePriceRuleException;
 use Syscover\ShoppingCart\Traits\Giftable;
 
@@ -13,7 +14,7 @@ use Syscover\ShoppingCart\Traits\Giftable;
  * @package Syscover\ShoppingCart
  */
 
-class Cart implements Arrayable
+class Cart implements Arrayable, JsonSerializable
 {
     use Giftable;
 
@@ -1006,5 +1007,10 @@ class Cart implements Arrayable
             'weight'                            => $this->weight,
             'cartPriceRulesNotCombinable'       => $this->getCartPriceRulesNotCombinable()
         ];
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 }

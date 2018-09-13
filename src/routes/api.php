@@ -4,13 +4,6 @@ Route::group(['middleware' => ['sessions']], function () {
 
     /*
     |----------------------------------
-    | SHOPPING CART
-    |----------------------------------
-    */
-    Route::get('api/v1/shopping-cart/{instance?}',              'Syscover\ShoppingCart\Controllers\ShoppingCartController@index')->name('api.shopping_cart.item');
-
-    /*
-    |----------------------------------
     | ITEMS
     |----------------------------------
     */
@@ -20,4 +13,11 @@ Route::group(['middleware' => ['sessions']], function () {
 //    Route::post('api/v1/market/product',                                        'Syscover\Market\Controllers\ProductController@store')->name('api.market.store_product');
 //    Route::put('api/v1/market/product/{id}/{lang}',                             'Syscover\Market\Controllers\ProductController@update')->name('api.market.update_product');
 //    Route::delete('api/v1/market/product/{id}/{lang?}',                         'Syscover\Market\Controllers\ProductController@destroy')->name('api.market.destroy_product');
+
+    /*
+    |----------------------------------
+    | SHOPPING CART
+    |----------------------------------
+    */
+    Route::get('api/v1/shopping-cart/{instance?}',              'Syscover\ShoppingCart\Controllers\ShoppingCartController@index')->name('api.shopping_cart.cart');
 });
