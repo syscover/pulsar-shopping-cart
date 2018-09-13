@@ -1,4 +1,4 @@
-<?php namespace Syscover\Market\Controllers;
+<?php namespace Syscover\ShoppingCart\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use Syscover\ShoppingCart\Facades\CartProvider;
