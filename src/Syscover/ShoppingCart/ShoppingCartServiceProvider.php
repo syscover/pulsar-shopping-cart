@@ -11,6 +11,9 @@ class ShoppingCartServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
+        // register routes
+        $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
+
 		// register tests
 		$this->publishes([
 			__DIR__ . '/../../tests/Feature' => base_path('/tests/Feature')
