@@ -12,19 +12,19 @@ class ShoppingCartController extends BaseController
 {
     public function index()
     {
-        $response['status']     = 200;
-        $response['statusText'] = "OK";
-        $response['data']       = CartProvider::instance(request('instance') ?? null);
-
-        return response()->json($response);
+        return response()->json([
+            'status'        => 200,
+            'status_text'   => 'OK',
+            'data'          => CartProvider::instance(request('instance') ?? null)
+        ]);
     }
 
     public function items()
     {
-        $response['status']     = 200;
-        $response['statusText'] = "OK";
-        $response['data']       = CartProvider::instance(request('instance') ?? null)->getCartItems();
-
-        return response()->json($response);
+        return response()->json([
+            'status'        => 200,
+            'status_text'   => 'OK',
+            'data'          => CartProvider::instance(request('instance') ?? null)->getCartItems()
+        ]);
     }
 }
