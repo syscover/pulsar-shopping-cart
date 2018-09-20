@@ -1,0 +1,16 @@
+# Action that user can to do in application, this is for set permissions
+type ShoppingCartItem {
+    rowId: ID!
+    name: String
+    unitPrice: Float
+    inputPrice: Float
+    transportable: Boolean
+    weight: Float
+    
+
+
+}
+
+type ShoppingCartCart {
+    rowId: ID!
+}
