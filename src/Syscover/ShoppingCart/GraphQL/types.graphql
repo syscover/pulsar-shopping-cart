@@ -24,5 +24,30 @@ type ShoppingCartItem {
 }
 
 type ShoppingCartCart {
-    rowId: ID!
+    cartItemsTotal: Float
+    cartItemsTotalWithoutDiscounts: Float
+    comments: String
+    discountAmount: Float
+    discountSubtotalAmount: Float
+    discountSubtotalPercentageAmount: Float
+    discountTotalAmount: Float
+    discountTotalPercentageAmount: Float
+    hasCartPriceRuleNotCombinable: Boolean
+    hasFreeShipping: Boolean
+    hasInvoice: Boolean
+    hasItemTransportable: Boolean
+    hasShipping: Boolean
+    instance: String
+    invoice: Object
+    items: [ShoppingCartItem]
+    paymentMethod: String
+    quantity: Float
+    shipping: Object
+    shippingAmount: Float
+    subtotal: Float
+    subtotalWithDiscounts: Float
+    taxAmount: Float
+    total: Float
+    transportableWeight: Float
+    weight: Float
 }
