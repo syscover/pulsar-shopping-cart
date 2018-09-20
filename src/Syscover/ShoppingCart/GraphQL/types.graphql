@@ -1,14 +1,26 @@
 # Action that user can to do in application, this is for set permissions
 type ShoppingCartItem {
-    rowId: ID!
+    discountAmount: Float
+    discountSubtotalFixedAmount: Float
+    discountSubtotalPercentage: Float
+    discountSubtotalPercentageAmount: Float
+    discountTotalFixedAmount: Float
+    discountTotalPercentage: Float
+    discountTotalPercentageAmount: Float
+    discountType: Int
+    id: Int
     name: String
-    unitPrice: Float
-    inputPrice: Float
+    price: FLoat
+    quantity: Float
+    rowId: ID!
+    subtotal: Float
+    taxAmount: Float
+    total: Float
+    totalWeight: Float
+    totalWithoutDiscounts: Float
     transportable: Boolean
+    unitPrice: Float
     weight: Float
-    
-
-
 }
 
 type ShoppingCartCart {

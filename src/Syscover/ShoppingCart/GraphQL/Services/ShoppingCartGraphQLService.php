@@ -1,6 +1,5 @@
 <?php namespace Syscover\ShoppingCart\GraphQL\Services;
 
-use Illuminate\Support\Facades\Log;
 use Syscover\ShoppingCart\Facades\CartProvider;
 
 class ShoppingCartGraphQLService
@@ -12,7 +11,6 @@ class ShoppingCartGraphQLService
 
     public function items($root, array $args)
     {
-        Log::info(CartProvider::instance($args['instance'] ?? null)->getCartItems());
         return CartProvider::instance($args['instance'] ?? null)->getCartItems();
     }
 }
