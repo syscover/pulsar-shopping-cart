@@ -995,6 +995,7 @@ class Cart implements Arrayable, JsonSerializable
             'items'                             => $this->cartItems,
             'paymentMethod'                     => $this->paymentMethod,
             'priceRules'                        => $this->cartPriceRules,
+            'priceRulesNotCombinable'           => $this->getCartPriceRulesNotCombinable(),
             'quantity'                          => $this->getQuantity(),
             'shipping'                          => $this->shipping,
             'shippingAmount'                    => $this->shippingAmount,
@@ -1005,7 +1006,6 @@ class Cart implements Arrayable, JsonSerializable
             'total'                             => $this->total,
             'transportableWeight'               => $this->transportableWeight,
             'weight'                            => $this->weight,
-            'cartPriceRulesNotCombinable'       => $this->getCartPriceRulesNotCombinable()
         ];
     }
 

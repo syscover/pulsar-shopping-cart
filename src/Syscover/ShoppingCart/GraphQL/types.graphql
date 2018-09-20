@@ -1,4 +1,20 @@
-# Action that user can to do in application, this is for set permissions
+type ShoppingCartTaxRule {
+    id: ID!
+    name: String
+    priority: Int
+    sort: Int
+    taxRate: Float
+    taxAmount: Float
+}
+
+type ShoppingCartPriceRule {
+    className: String
+    ix: Int
+    id: String
+    name: String
+    description: String
+}
+
 type ShoppingCartItem {
     discountAmount: Float
     discountSubtotalFixedAmount: Float
@@ -8,13 +24,15 @@ type ShoppingCartItem {
     discountTotalPercentage: Float
     discountTotalPercentageAmount: Float
     discountType: Int
-    id: Int
+    id: Int!
     name: String
+    options: Objet
     price: FLoat
     quantity: Float
     rowId: ID!
     subtotal: Float
     taxAmount: Float
+    taxRules: [ShoppingCartTaxRule]
     total: Float
     totalWeight: Float
     totalWithoutDiscounts: Float
@@ -47,6 +65,7 @@ type ShoppingCartCart {
     subtotal: Float
     subtotalWithDiscounts: Float
     taxAmount: Float
+    taxRules: [ShoppingCartTaxRule]
     total: Float
     transportableWeight: Float
     weight: Float
