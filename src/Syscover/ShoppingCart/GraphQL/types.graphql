@@ -26,7 +26,7 @@ type ShoppingCartItem {
     discountType: Int
     id: Int!
     name: String
-    options: Objet
+    options: Object
     price: Float
     quantity: Float
     rowId: ID!
