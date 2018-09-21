@@ -27,7 +27,7 @@ type ShoppingCartItem {
     id: Int!
     name: String
     options: Objet
-    price: FLoat
+    price: Float
     quantity: Float
     rowId: ID!
     subtotal: Float

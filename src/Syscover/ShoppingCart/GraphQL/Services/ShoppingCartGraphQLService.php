@@ -6,11 +6,11 @@ class ShoppingCartGraphQLService
 {
     public function cart($root, array $args)
     {
-        return CartProvider::instance($args['instance'] ?? null);
+        return CartProvider::instance($args['instance'] ?? null)->toArray();
     }
 
     public function items($root, array $args)
     {
-        return CartProvider::instance($args['instance'] ?? null)->getCartItems();
+        return CartProvider::instance($args['instance'] ?? null)->getCartItems()->toArray();
     }
 }

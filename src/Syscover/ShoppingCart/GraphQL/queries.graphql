@@ -1,4 +1,3 @@
-#
 """ Query to get items from shopping cart """
 shoppingCartItems(instance:String): [ShoppingCartItem!]! @field(resolver: "Syscover\\ShoppingCart\\GraphQL\\Services\\ShoppingCartGraphQLService@items")
 

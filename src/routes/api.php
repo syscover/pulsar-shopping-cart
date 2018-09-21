@@ -1,6 +1,5 @@
 <?php
-
-Route::group(['middleware' => ['sessions']], function () {
+Route::group(['middleware' => ['api','auth:api']], function () {
 
     /*
     |----------------------------------

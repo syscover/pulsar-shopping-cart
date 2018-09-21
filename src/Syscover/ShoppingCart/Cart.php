@@ -992,7 +992,7 @@ class Cart implements Arrayable, JsonSerializable
             'hasShipping'                       => $this->hasShipping(),
             'instance'                          => $this->instance,
             'invoice'                           => $this->invoice,
-            'items'                             => $this->cartItems,
+            'items'                             => $this->cartItems->toArray(), // execute toArray because you need to perform calculations
             'paymentMethod'                     => $this->paymentMethod,
             'priceRules'                        => $this->cartPriceRules,
             'priceRulesNotCombinable'           => $this->getCartPriceRulesNotCombinable(),
