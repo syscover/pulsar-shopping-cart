@@ -1,5 +1,5 @@
 type ShoppingCartTaxRule {
-    id: ID!
+    id: Int!
     name: String
     priority: Int
     sort: Int
@@ -29,7 +29,7 @@ type ShoppingCartItem {
     options: Object
     price: Float
     quantity: Float
-    rowId: ID!
+    rowId: Int!
     subtotal: Float
     taxAmount: Float
     taxRules: [ShoppingCartTaxRule]
