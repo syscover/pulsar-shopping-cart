@@ -10,7 +10,7 @@ type ShoppingCartTaxRule {
 type ShoppingCartPriceRule {
     className: String
     ix: Int
-    id: String
+    id: ID!
     name: String
     description: String
 }
@@ -24,7 +24,7 @@ type ShoppingCartItem {
     discountTotalPercentage: Float
     discountTotalPercentageAmount: Float
     discountType: Int
-    id: Int!
+    id: ID!
     name: String
     options: Object
     price: Float
