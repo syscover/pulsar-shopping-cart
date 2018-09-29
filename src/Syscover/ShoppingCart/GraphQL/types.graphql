@@ -24,12 +24,12 @@ type ShoppingCartItem {
     discountTotalPercentage: Float
     discountTotalPercentageAmount: Float
     discountType: Int
-    id: ID!
+    id: Int!
     name: String
     options: Object
     price: Float
     quantity: Float
-    rowId: Int!
+    rowId: ID!
     subtotal: Float
     taxAmount: Float
     taxRules: [ShoppingCartTaxRule]
