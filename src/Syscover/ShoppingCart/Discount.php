@@ -74,7 +74,7 @@ class Discount implements Arrayable
         return [
             'fixed'                             => $this->fixed,
             'percentage'                        => $this->percentage,
-            'maximumDiscountPercentageAmount'   => $this->maximumDiscountPercentageAmount
+            'maximumPercentageAmount'           => $this->maximumPercentageAmount
         ];
     }
 }
