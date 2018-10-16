@@ -1,5 +1,5 @@
 type ShoppingCartTaxRule {
-    id: Int!
+    id: String!
     name: String
     priority: Int
     sort: Int
