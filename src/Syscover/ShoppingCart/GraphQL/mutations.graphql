@@ -1,0 +1,2 @@
+""" Mutation to add product to cart """
+shoppingCartAdd(id:Int! lang_id:String quantity:Int): ShoppingCartItem! @field(resolver: "Syscover\\ShoppingCart\\GraphQL\\Services\\ShoppingCartGraphQLService@add")

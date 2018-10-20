@@ -155,16 +155,17 @@ class Cart implements Arrayable, JsonSerializable
     /**
      * Check if cart has invoice
      *
-     * @return boolean | void
+     * @return bool
      */
-    public function hasInvoice()
+    public function hasInvoice(): bool
     {
         if( is_object($this->invoice) &&
             get_class($this->invoice) === 'Illuminate\Support\Collection' &&
             $this->invoice->count() > 0
         )
+        {
             return true;
-
+        }
         return false;
     }
 
@@ -602,8 +603,8 @@ class Cart implements Arrayable, JsonSerializable
     }
 
     /**
-     * @param   array|\Syscover\ShoppingCart\CartItem   $cartItem
-     * @return  array|CartItem
+     * @param   array | \Syscover\ShoppingCart\Item   $cartItem
+     * @return  array | Item
      */
     public function add($cartItem)
     {
