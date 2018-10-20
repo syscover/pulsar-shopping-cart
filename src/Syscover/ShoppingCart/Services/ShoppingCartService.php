@@ -8,7 +8,7 @@ use Syscover\ShoppingCart\Item;
 
 class ShoppingCartService
 {
-    public static function add($id, $lang_id, $quantity, $instance = null)
+    public static function add(int $id, string $lang_id, float $quantity, string $instance = null)
     {
         $product = Product::builder()
             ->where('market_product.id', $id)
