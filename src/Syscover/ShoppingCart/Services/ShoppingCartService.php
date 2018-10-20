@@ -2,17 +2,17 @@
 
 use Syscover\Market\Models\Product;
 use Syscover\Market\Services\TaxRuleService;
-use Syscover\ShoppingCart\CartProvider;
+use Syscover\ShoppingCart\Facades\CartProvider;
 use Syscover\ShoppingCart\Events\ShoppingCartAddProduct;
 use Syscover\ShoppingCart\Item;
 
 class ShoppingCartService
 {
-    public static function add($payload)
+    public static function add($id, $lang_id, $quantity, $instance = null)
     {
         $product = Product::builder()
-            ->where('id', $payload['id'])
-            ->where('lang_id', $payload['lang_id'] ?? base_lang())
+            ->where('market_product.id', $id)
+            ->where('market_product_lang.lang_id', $lang_id)
             ->first()
             ->load('attachments');
 
@@ -39,7 +39,7 @@ class ShoppingCartService
         $taxRules = TaxRuleService::getShoppingCartTaxRules($product->product_class_tax_id);
 
         $item = null;
-        $eventResponses = event(new ShoppingCartAddProduct($payload, $product));
+        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $product));
 
         // check if we have any Item from event
         foreach ($eventResponses as $response)
@@ -54,7 +54,7 @@ class ShoppingCartService
             $item = new Item(
                 $product->id,
                 $product->name,
-                $payload['quantity'] ?? 1,
+                $quantity,
                 $product->price,
                 $product->weight,
                 $isTransportable,
@@ -66,7 +66,7 @@ class ShoppingCartService
         }
 
         // instance row to add product
-        $cartItem = CartProvider::instance()->add(
+        $cartItem = CartProvider::instance($instance)->add(
             $item
         );
 

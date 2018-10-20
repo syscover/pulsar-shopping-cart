@@ -4,12 +4,16 @@ use Syscover\Market\Models\Product;
 
 class ShoppingCartAddProduct
 {
-    public $payload;
+    public $id;
+    public $lang_id;
+    public $quantity;
     public $product;
 
-    public function __construct(array $payload, Product $product)
+    public function __construct(int $id, string $lang_id, float $quantity, Product $product)
     {
-        $this->payload = $payload;
+        $this->id = $id;
+        $this->lang_id = $lang_id;
+        $this->quantity = $quantity;
         $this->product = $product;
     }
 }

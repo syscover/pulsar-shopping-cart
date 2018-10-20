@@ -17,6 +17,6 @@ class ShoppingCartGraphQLService
 
     public static function add($root, array $args)
     {
-        return ShoppingCartService::add($args['payload']);
+        return ShoppingCartService::add($args['id'], $args['lang_id'] ?? base_lang(), $args['quantity'] ?? 1);
     }
 }
