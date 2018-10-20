@@ -39,7 +39,7 @@ class ShoppingCartService
         $taxRules = TaxRuleService::getShoppingCartTaxRules($product->product_class_tax_id);
 
         $item = null;
-        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $product));
+        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $instance, $product));
 
         // check if we have any Item from event
         foreach ($eventResponses as $response)
