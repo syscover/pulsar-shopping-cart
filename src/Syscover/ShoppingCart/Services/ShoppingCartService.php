@@ -72,7 +72,7 @@ class ShoppingCartService
         return CartProvider::instance($instance)->toArray();
     }
 
-    public function update(string $id, float $quantity, string $instance = null)
+    public static function update(string $id, float $quantity, string $instance = null)
     {
         // set quantity
         CartProvider::instance($instance)->setQuantity($id, $quantity);
