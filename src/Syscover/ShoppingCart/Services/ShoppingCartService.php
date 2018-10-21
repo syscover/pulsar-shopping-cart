@@ -80,4 +80,12 @@ class ShoppingCartService
         // return all shopping cart
         return CartProvider::instance($instance)->toArray();
     }
+
+    public static function delete(string $id, string $instance = null)
+    {
+        CartProvider::instance($instance)->remove($id);
+
+        // return all shopping cart
+        return CartProvider::instance($instance)->toArray();
+    }
 }

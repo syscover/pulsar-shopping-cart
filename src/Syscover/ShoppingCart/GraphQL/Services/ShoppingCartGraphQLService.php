@@ -24,4 +24,9 @@ class ShoppingCartGraphQLService
     {
         return ShoppingCartService::update($args['id'], $args['quantity'], $args['instance'] ?? null);
     }
+
+    public static function delete($root, array $args)
+    {
+        return ShoppingCartService::delete($args['id'], $args['instance'] ?? null);
+    }
 }

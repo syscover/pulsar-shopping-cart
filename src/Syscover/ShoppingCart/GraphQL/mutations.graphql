@@ -3,3 +3,6 @@ shoppingCartAdd(id:Int! lang_id:String quantity:Float instance:String): Shopping
 
 """ Mutation to update product from cart """
 shoppingCartUpdate(id:String! quantity:Float! instance:String): ShoppingCartCart! @field(resolver: "Syscover\\ShoppingCart\\GraphQL\\Services\\ShoppingCartGraphQLService@update")
+
+""" Mutation to delete product from cart """
+shoppingCartDelete(id:String! instance:String): ShoppingCartCart! @field(resolver: "Syscover\\ShoppingCart\\GraphQL\\Services\\ShoppingCartGraphQLService@delete")
