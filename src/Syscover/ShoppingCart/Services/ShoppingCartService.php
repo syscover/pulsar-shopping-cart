@@ -71,4 +71,13 @@ class ShoppingCartService
         // return all shopping cart
         return CartProvider::instance($instance)->toArray();
     }
+
+    public function update(string $id, float $quantity, string $instance = null)
+    {
+        // set quantity
+        CartProvider::instance($instance)->setQuantity($id, $quantity);
+
+        // return all shopping cart
+        return CartProvider::instance($instance)->toArray();
+    }
 }

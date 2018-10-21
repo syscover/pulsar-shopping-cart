@@ -15,7 +15,7 @@ class Item implements Arrayable
     public $rowId;
 
     /**
-     * The ID of the cart item
+     * The ID of the product
      *
      * @var int|string
      */
@@ -159,7 +159,7 @@ class Item implements Arrayable
     )
     {
         if(empty($id))
-            throw new \InvalidArgumentException('Please supply a valid identifier.');
+            throw new \InvalidArgumentException('Please supply a valid product id.');
 
         if(empty($name))
             throw new \InvalidArgumentException('Please supply a valid name.');

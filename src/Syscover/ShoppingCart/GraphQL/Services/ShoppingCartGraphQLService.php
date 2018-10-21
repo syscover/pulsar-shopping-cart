@@ -19,4 +19,9 @@ class ShoppingCartGraphQLService
     {
         return ShoppingCartService::add($args['id'], $args['lang_id'] ?? base_lang(), $args['quantity'] ?? 1, $args['instance'] ?? null);
     }
+
+    public static function update($root, array $args)
+    {
+        return ShoppingCartService::update($args['id'], $args['quantity'], $args['instance'] ?? null);
+    }
 }
