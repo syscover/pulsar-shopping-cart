@@ -66,10 +66,9 @@ class ShoppingCartService
         }
 
         // instance row to add product
-        $cartItem = CartProvider::instance($instance)->add(
-            $item
-        );
+        CartProvider::instance($instance)->add($item);
 
-        return $cartItem;
+        // return all shopping cart
+        return CartProvider::instance($instance)->toArray();
     }
 }
