@@ -8,7 +8,7 @@ use Syscover\ShoppingCart\Item;
 
 class ShoppingCartService
 {
-    public static function add(int $id, string $lang_id, float $quantity, string $instance = 'default')
+    public static function add(int $id, string $lang_id, float $quantity, string $instance = null)
     {
         $product = Product::builder()
             ->where('market_product.id', $id)
@@ -39,7 +39,7 @@ class ShoppingCartService
         $taxRules = TaxRuleService::getShoppingCartTaxRules($product->product_class_tax_id);
 
         $item = null;
-        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $instance, $product));
+        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $product, $instance));
 
         // check if we have any Item from event
         foreach ($eventResponses as $response)
