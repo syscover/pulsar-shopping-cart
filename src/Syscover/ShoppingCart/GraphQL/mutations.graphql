@@ -2,4 +2,4 @@
 shoppingCartAdd(id:Int! lang_id:String quantity:Float instance:String): ShoppingCartCart! @field(resolver: "Syscover\\ShoppingCart\\GraphQL\\Services\\ShoppingCartGraphQLService@add")
 
 """ Mutation to update product from cart """
-shoppingCartUpdate(id:Int! quantity:Float! instance:String): ShoppingCartCart! @field(resolver: "Syscover\\ShoppingCart\\GraphQL\\Services\\ShoppingCartGraphQLService@update")
+shoppingCartUpdate(id:String! quantity:Float! instance:String): ShoppingCartCart! @field(resolver: "Syscover\\ShoppingCart\\GraphQL\\Services\\ShoppingCartGraphQLService@update")
