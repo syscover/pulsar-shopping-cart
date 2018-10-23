@@ -38,7 +38,7 @@ class ShoppingCartService
         // get shopping cart tax rule array (Syscover\ShoppingCart\TaxRule[])
         $taxRules = TaxRuleService::getShoppingCartTaxRules($product->product_class_tax_id);
 
-        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $product, $isTransportable, $taxRules, $instance));
+        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $product, $cloneProduct, $isTransportable, $taxRules, $instance));
 
         // check if we have any Item from event
         $item = null;
