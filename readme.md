@@ -339,3 +339,23 @@ To set price rules you can use addCartPriceRule methop
 Scenarios to consider when applying to the pricing rules
 * We have created discounts over subtotal and total price, but you can not apply both discounts to the same cart.
 * If apply percentage discount and fixed, first will apply fixed discount and last the percentage discount.
+
+##Events:
+
+You can register this events in app/Providers/EventServiceProvider.php to manage various actions. 
+
+```
+protected $listen = [
+    ...
+    'Syscover\...\Events\YourEvent' => [
+        'App\Listeners\YourListener'
+    ],
+    ...
+];
+```
+
+##### Event when product is added
+If the listener return a \Syscover\ShoppingCart\Item this will be added 
+```
+Syscover\ShoppingCart\Events\ShoppingCartAddProduct
+```
