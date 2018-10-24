@@ -10,13 +10,20 @@ class ShoppingCartService
 {
     public static function add(int $id, string $lang_id, float $quantity, string $instance = null)
     {
-        $product = Product::builder()
+        $dirtyProduct = Product::builder()
             ->where('market_product.id', $id)
             ->where('market_product_lang.lang_id', $lang_id)
             ->first()
             ->load('attachments');
 
-        if($product === null) return null;
+        if($dirtyProduct === null) return null;
+
+        // when get price from product, internally calculate subtotal and total.
+        // we don't want save this object on shopping cart, if login user with different prices and add same product,
+        // I would register it as a different product because it has a different price
+        // will be different because the product will have different prices
+        // product will be a shot of original product for to be serialized
+        $product = clone $dirtyProduct;
 
         //**************************************************************************************
         // know if product is transportable
@@ -28,17 +35,12 @@ class ShoppingCartService
         //
         // You can change this value, if you have same product transportable and downloadable
         //***************************************
-        $isTransportable = $product->type_id == 2 || $product->type_id == 3;
-
-        // when get price from product, internally calculate subtotal and total.
-        // we don't want save this object on shopping cart, if login user with different prices and add same product,
-        // will be different because the product will have different prices
-        $cloneProduct = clone $product;
+        $isTransportable = $dirtyProduct->type_id == 2 || $dirtyProduct->type_id == 3;
 
         // get shopping cart tax rule array (Syscover\ShoppingCart\TaxRule[])
-        $taxRules = TaxRuleService::getShoppingCartTaxRules($product->product_class_tax_id);
+        $taxRules = TaxRuleService::getShoppingCartTaxRules($dirtyProduct->product_class_tax_id);
 
-        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $product, $cloneProduct, $isTransportable, $taxRules, $instance));
+        $eventResponses = event(new ShoppingCartAddProduct($id, $lang_id, $quantity, $dirtyProduct, $product, $isTransportable, $taxRules, $instance));
 
         // check if we have any Item from event
         $item = null;
@@ -52,15 +54,15 @@ class ShoppingCartService
 
         if(! $item) {
             $item = new Item(
-                $product->id,
-                $product->name,
+                $dirtyProduct->id,
+                $dirtyProduct->name,
                 $quantity,
-                $product->price,
-                $product->weight,
+                $dirtyProduct->price,
+                $dirtyProduct->weight,
                 $isTransportable,
                 $taxRules,
                 [
-                    'product' => $cloneProduct
+                    'product' => $product
                 ]
             );
         }
