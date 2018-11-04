@@ -71,6 +71,13 @@ class Item implements Arrayable
     public $options;
 
     /**
+     * The cost for this cart item
+     *
+     * @var float
+     */
+    public $cost;
+
+    /**
      * The quantity for this cart item
      *
      * @var int|float
@@ -146,16 +153,18 @@ class Item implements Arrayable
      * @param float|null                            $weight
      * @param array                                 $options
      * @param array|\Syscover\ShoppingCart\TaxRule  $taxRule
+     * @param float|null                            $cost
      */
     public function __construct(
-        $id,
-        $name,
-        $quantity,
-        $inputPrice,
-        $weight = 1.000,
-        $transportable = true,
+        int $id,
+        string $name,
+        float $quantity,
+        float $inputPrice,
+        ?float $weight = 1.000,
+        bool $transportable = true,
         $taxRule = [],
-        array $options = []
+        array $options = [],
+        ?float $cost = null
     )
     {
         if(empty($id))
@@ -181,6 +190,7 @@ class Item implements Arrayable
         $this->inputPrice       = floatval($inputPrice);
         $this->transportable    = $transportable;
         $this->weight           = floatval($weight);
+        $this->cost             = floatval($cost);
         $this->options          = new Options($options);
         $this->taxRules         = new CartItemTaxRules();
         $this->rowId            = $this->generateRowId($id, $options);
@@ -249,6 +259,11 @@ class Item implements Arrayable
         if($attribute === 'discountTotalFixedAmount')
         {
             return $this->discountsTotalFixed->sum('amount');
+        }
+
+        if($attribute === 'totalCost')
+        {
+            return $this->quantity * $this->cost;
         }
 
         if($attribute === 'totalWeight')
@@ -329,6 +344,32 @@ class Item implements Arrayable
     public function getPrice($decimals = 2, $decimalPoint = ',', $thousandSeparator = '.')
     {
         return number_format($this->price, $decimals, $decimalPoint, $thousandSeparator);
+    }
+
+    /**
+     * Returns the formatted unit cost.
+     *
+     * @param   int       $decimals
+     * @param   string    $decimalPoint
+     * @param   string    $thousandSeparator
+     * @return  string
+     */
+    public function getCost($decimals = 2, $decimalPoint = ',', $thousandSeparator = '.')
+    {
+        return number_format($this->cost, $decimals, $decimalPoint, $thousandSeparator);
+    }
+
+    /**
+     * Returns the formatted total cost.
+     *
+     * @param   int       $decimals
+     * @param   string    $decimalPoint
+     * @param   string    $thousandSeparator
+     * @return  string
+     */
+    public function getTotalCost($decimals = 2, $decimalPoint = ',', $thousandSeparator = '.')
+    {
+        return number_format($this->totalCost, $decimals, $decimalPoint, $thousandSeparator);
     }
 
     /**

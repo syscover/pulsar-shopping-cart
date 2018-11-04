@@ -49,6 +49,7 @@ class ShoppingCartService
             if(get_class($response) === Item::class)
             {
                 $item = $response;
+                break;
             }
         }
 
@@ -63,7 +64,8 @@ class ShoppingCartService
                 $taxRules,
                 [
                     'product' => $product
-                ]
+                ],
+                $dirtyProduct->cost
             );
         }
 
