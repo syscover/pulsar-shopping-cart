@@ -149,14 +149,14 @@ class Item implements Arrayable
      * @param string                                $name
      * @param float                                 $quantity
      * @param float                                 $inputPrice
-     * @param boolean                               $transportable
      * @param float|null                            $weight
-     * @param array                                 $options
+     * @param boolean                               $transportable
      * @param array|\Syscover\ShoppingCart\TaxRule  $taxRule
+     * @param array                                 $options
      * @param float|null                            $cost
      */
     public function __construct(
-        int $id,
+        $id,
         string $name,
         float $quantity,
         float $inputPrice,
@@ -167,30 +167,19 @@ class Item implements Arrayable
         ?float $cost = null
     )
     {
-        if(empty($id))
-            throw new \InvalidArgumentException('Please supply a valid product id.');
-
-        if(empty($name))
-            throw new \InvalidArgumentException('Please supply a valid name.');
-
-        if(strlen($inputPrice) < 0 || ! is_numeric($inputPrice))
-            throw new \InvalidArgumentException('Please supply a valid price.');
-
-        if(! is_bool($transportable))
-            throw new \InvalidArgumentException('Please supply a valid transportable.');
-
-        if($weight === null)
-            $weight = 0;
-
-        if(strlen($weight) < 0 || ! is_numeric($weight))
-            throw new \InvalidArgumentException('Please supply a valid weight.');
+        if(empty($id))                                                          throw new \InvalidArgumentException('Please supply a valid product id.');
+        if(empty($name))                                                        throw new \InvalidArgumentException('Please supply a valid name.');
+        if(strlen($inputPrice) < 0 || !is_numeric($inputPrice))                 throw new \InvalidArgumentException('Please supply a valid numeric price value.');
+        if(!is_bool($transportable))                                            throw new \InvalidArgumentException('Please supply a valid transportable.');
+        if(!is_null($weight) && (strlen($weight) < 0 || !is_numeric($weight)))  throw new \InvalidArgumentException('Please supply a valid weight.');
+        if(!is_null($cost) && !is_numeric($cost))                               throw new \InvalidArgumentException('Please supply a valid numeric cost value.');
 
         $this->id               = $id;
         $this->name             = $name;
         $this->inputPrice       = floatval($inputPrice);
         $this->transportable    = $transportable;
-        $this->weight           = floatval($weight);
-        $this->cost             = floatval($cost);
+        $this->weight           = floatval($weight ?? 0);
+        $this->cost             = $cost ? floatval($cost) : null;
         $this->options          = new Options($options);
         $this->taxRules         = new CartItemTaxRules();
         $this->rowId            = $this->generateRowId($id, $options);

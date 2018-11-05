@@ -13,7 +13,17 @@ class ShoppingCartProviderTest extends TestCase
     {
         $this->expectsEvents('cart.added');
 
-        CartProvider::instance()->add(new Item('293ad', 'Product 1', 1, 9.99, 1.000, true));
+        CartProvider::instance()->add(
+            new Item(
+                '293ad',
+                'Product 1',
+                1,
+                9.99,
+                1.000,
+                true,
+
+            )
+        );
 
         $this->assertEquals(1, CartProvider::instance()->getCartItems()->count());
     }
