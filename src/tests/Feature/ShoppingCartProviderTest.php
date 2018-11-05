@@ -20,8 +20,7 @@ class ShoppingCartProviderTest extends TestCase
                 1,
                 9.99,
                 1.000,
-                true,
-
+                true
             )
         );
 
@@ -640,5 +639,29 @@ class ShoppingCartProviderTest extends TestCase
         {
             $this->assertEquals(10.0, $item->taxAmount);
         }
+    }
+
+    public function testCartCanGetCost()
+    {
+        $this->expectsEvents('cart.added');
+
+        CartProvider::instance()->add(
+            new Item(
+                '293ad',
+                'Product 1',
+                2,
+                9.99,
+                1.000,
+                true,
+                [],
+                [],
+                2
+            )
+        );
+
+        $this->assertEquals(2, CartProvider::instance()->getCartItems()->first()->cost);
+        $this->assertEquals('2,00', CartProvider::instance()->getCartItems()->first()->getCost());
+        $this->assertEquals(4, CartProvider::instance()->getCartItems()->first()->totalCost);
+        $this->assertEquals('4,00', CartProvider::instance()->getCartItems()->first()->getTotalCost());
     }
 }
