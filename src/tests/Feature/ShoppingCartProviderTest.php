@@ -659,9 +659,9 @@ class ShoppingCartProviderTest extends TestCase
             )
         );
 
-        $this->assertEquals(2, CartProvider::instance()->getCartItems()->first()->cost);
+        $this->assertEquals(2.0000, CartProvider::instance()->getCartItems()->first()->cost);
         $this->assertEquals('2,00', CartProvider::instance()->getCartItems()->first()->getCost());
-        $this->assertEquals(4, CartProvider::instance()->getCartItems()->first()->totalCost);
+        $this->assertEquals(4.0000, CartProvider::instance()->getCartItems()->first()->totalCost);
         $this->assertEquals('4,00', CartProvider::instance()->getCartItems()->first()->getTotalCost());
     }
 }
