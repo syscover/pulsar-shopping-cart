@@ -35,7 +35,7 @@ class ShoppingCartService
         //
         // You can change this value, if you have same product transportable and downloadable
         //***************************************
-        $isTransportable = $dirtyProduct->type_id == 2 || $dirtyProduct->type_id == 3;
+        $isTransportable = $dirtyProduct->class_id == 2 || $dirtyProduct->class_id == 3;
 
         // get shopping cart tax rule array (Syscover\ShoppingCart\TaxRule[])
         $taxRules = TaxRuleService::getShoppingCartTaxRules($dirtyProduct->product_class_tax_id);
